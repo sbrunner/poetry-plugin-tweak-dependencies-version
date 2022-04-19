@@ -1,3 +1,7 @@
+[tool.black]
+line-length = 110
+target-version = ['py38']
+
 [tool.poetry]
 name = "example"
 version = "0.1.0"
@@ -6,10 +10,10 @@ authors = ["Stéphane Brunner <stephane.brunner@camptocamp.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-aaa = "1.2.3"
-bbb = "1.2.3"
-ccc = "1.2.3"
-ddd = "1.2.3"
+aaaaa = "1.2.3"
+bbbbb = "1.2.3"
+ccccc = "1.2.3"
+ddddd = "1.2.3"
 
 
 [build-system]
@@ -17,6 +21,6 @@ requires = ["poetry-core==1.0.7"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry-plugin-tweak-dependencies-version]
-aaa = "major"
-bbb = "minor"
-ccc = "patch"
+aaaaa = "major"
+bbbbb = "minor"
+ccccc = "patch"

@@ -1,12 +1,32 @@
+import builtins
 import functools
 from pathlib import Path
 from typing import Mapping, Optional
 
 import tomlkit
 from poetry import factory as factory_mod
+from poetry.core import factory as core_factory_mod
 from poetry.core.packages.dependency import Dependency
 from poetry.core.semver.version import Version
 from poetry.core.semver.version_range import VersionRange
+
+
+class _State:
+    def __init__(
+        self,
+        patched_poetry_create: bool = False,
+        patched_core_poetry_create: bool = False,
+        patched_poetry_command_run: bool = False,
+        patched_poetry_command_shell: bool = False,
+    ) -> None:
+        self.patched_poetry_create = patched_poetry_create
+        self.patched_core_poetry_create = patched_core_poetry_create
+        self.patched_poetry_command_run = patched_poetry_command_run
+        self.patched_poetry_command_shell = patched_poetry_command_shell
+        self.original_import_func = builtins.__import__
+
+
+_state = _State()
 
 
 def _find_higher_file(*names: str, start: Path = None) -> Optional[Path]:
@@ -65,9 +85,7 @@ def _patch_poetry_create(factory_mod) -> None:
                 )
             if version_type == "patch":
                 new_range = VersionRange(
-                    Version(
-                        new_range.min.major, new_range.min.minor, new_range.min.patch
-                    ),
+                    Version(new_range.min.major, new_range.min.minor, new_range.min.patch),
                     new_range.max.next_patch,
                     include_min=True,
                 )
@@ -79,5 +97,80 @@ def _patch_poetry_create(factory_mod) -> None:
     getattr(factory_mod, "Factory").create_poetry = alt_poetry_create
 
 
+def _patch_poetry_command_run(run_mod) -> None:
+    original_poetry_command_run = getattr(run_mod, "RunCommand").handle
+
+    @functools.wraps(original_poetry_command_run)
+    def alt_poetry_command_run(self, *args, **kwargs):
+        # As of version 1.0.0b2, on Linux, the `poetry run` command
+        # uses `os.execvp` function instead of spawning a new process.
+        # This prevents the atexit `deactivate` hook to be invoked.
+        # For this reason, we immediately call `deactivate` before
+        # actually executing the run command.
+        return original_poetry_command_run(self, *args, **kwargs)
+
+    getattr(run_mod, "RunCommand").handle = alt_poetry_command_run
+
+
+def _patch_poetry_command_shell(shell_mod) -> None:
+    original_poetry_command_shell = getattr(shell_mod, "ShellCommand").handle
+
+    @functools.wraps(original_poetry_command_shell)
+    def alt_poetry_command_shell(self, *args, **kwargs):
+        return original_poetry_command_shell(self, *args, **kwargs)
+
+    getattr(shell_mod, "ShellCommand").handle = alt_poetry_command_shell
+
+
 def activate() -> None:
-    _patch_poetry_create(factory_mod)
+    @functools.wraps(builtins.__import__)
+    def alt_import(name, globals=None, locals=None, fromlist=(), level=0):
+        module = _state.original_import_func(name, globals, locals, fromlist, level)
+
+        if not _state.patched_poetry_create:
+            try:
+                if name == "poetry.factory" and fromlist:
+                    _patch_poetry_create(module)
+                    _state.patched_poetry_create = True
+                elif name == "poetry" and "factory" in fromlist:
+                    _patch_poetry_create(module.factory)
+                    _state.patched_poetry_create = True
+            except (ImportError, AttributeError):
+                pass
+
+        if not _state.patched_core_poetry_create:
+            try:
+                if name == "poetry.core.factory" and fromlist:
+                    _patch_poetry_create(module)
+                    _state.patched_core_poetry_create = True
+                elif name == "poetry.core" and "factory" in fromlist:
+                    _patch_poetry_create(module.factory)
+                    _state.patched_core_poetry_create = True
+            except (ImportError, AttributeError):
+                pass
+
+        if not _state.patched_poetry_command_run:
+            try:
+                if name == "poetry.console.commands.run" and fromlist:
+                    _patch_poetry_command_run(module)
+                    _state.patched_poetry_command_run = True
+                elif name == "poetry.console.commands" and "run" in fromlist:
+                    _patch_poetry_command_run(module.run)
+                    _state.patched_poetry_command_run = True
+            except (ImportError, AttributeError):
+                pass
+
+        if not _state.patched_poetry_command_shell:
+            try:
+                if name == "poetry.console.commands.shell" and fromlist:
+                    _patch_poetry_command_shell(module)
+                    _state.patched_poetry_command_shell = True
+                elif name == "poetry.console.commands" and "shell" in fromlist:
+                    _patch_poetry_command_shell(module.shell)
+                    _state.patched_poetry_command_shell = True
+            except (ImportError, AttributeError):
+                pass
+
+        return module
+
+    builtins.__import__ = alt_import
