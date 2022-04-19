@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "example"
+version = "0.1.0"
+description = "Example"
+authors = ["Stéphane Brunner <stephane.brunner@camptocamp.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+aaa = "1.2.3"
+bbb = "1.2.3"
+ccc = "1.2.3"
+ddd = "1.2.3"
+
+
+[build-system]
+requires = ["poetry-core==1.0.7"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry-plugin-tweak-dependencies-version]
+aaa = "major"
+bbb = "minor"
+ccc = "patch"

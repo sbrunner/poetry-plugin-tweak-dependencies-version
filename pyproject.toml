@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "poetry-plugin-tweak-dependencies-version"
+version = "0.1.0"
+description = "Poetry plugin used to tweak dependency versions"
+readme = "README.md"
+authors = ["Stéphane Brunner <stephane.brunner@camptocamp.com>"]
+include = ["zzz_poetry_plugin_tweak_dependencies_version.pth"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+poetry = "1.*"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core==1.0.7", "poetry-dynamic-versioning==0.14.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.plugins."poetry.plugin"]
+poetry-plugin-tweak-dependencies = "poetry_plugin_tweak_dependencies:TweakDependencyVersion"
+
+[tool.poetry-dynamic-versioning]
+enable = true
+vcs = "git"
+style = "semver"
+#pattern = "^((?P<epoch>\\d+)!)?(?P<base>\\d+(\\.\\d+)*)"
