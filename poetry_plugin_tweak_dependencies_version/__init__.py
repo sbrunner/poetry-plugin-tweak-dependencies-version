@@ -1,12 +1,14 @@
+"""Poetry plugin use to tweak the dependencies of the project."""
+
 import functools
 from pathlib import Path
 from typing import Mapping, Optional
 
 import tomlkit
-from poetry import factory as factory_mod
-from poetry.core.packages.dependency import Dependency
-from poetry.core.semver.version import Version
-from poetry.core.semver.version_range import VersionRange
+from poetry.core import factory as core_factory_mod  # type: ignore
+from poetry.core.packages.dependency import Dependency  # type: ignore
+from poetry.core.semver.version import Version  # type: ignore
+from poetry.core.semver.version_range import VersionRange  # type: ignore
 
 
 def _find_higher_file(*names: str, start: Path = None) -> Optional[Path]:
@@ -23,11 +25,12 @@ def _find_higher_file(*names: str, start: Path = None) -> Optional[Path]:
     return None
 
 
-def _get_pyproject_path(start: Path = None) -> Optional[Path]:
+def _get_pyproject_path(start: Optional[Path] = None) -> Optional[Path]:
     return _find_higher_file("pyproject.toml", start=start)
 
 
-def get_config(start: Path = None) -> Mapping:
+def get_config(start: Optional[Path] = None) -> Mapping:
+    """Get the configuration for the plugin."""
     pyproject_path = _get_pyproject_path(start)
     if pyproject_path is None:
         return {}
@@ -45,7 +48,7 @@ def _patch_poetry_create(factory_mod) -> None:
         config = get_config(kwargs.get("cwd", args[0]))
         versions_type = config.get("default", "full")
 
-        for index in range(len(instance.package.requires)):
+        for index in range(len(instance.package.requires)):  # pylint: disable=consider-using-enumerate
             require = instance.package.requires[index]
             name = require.name
             version_type = config.get(name, versions_type)
@@ -65,9 +68,7 @@ def _patch_poetry_create(factory_mod) -> None:
                 )
             if version_type == "patch":
                 new_range = VersionRange(
-                    Version(
-                        new_range.min.major, new_range.min.minor, new_range.min.patch
-                    ),
+                    Version(new_range.min.major, new_range.min.minor, new_range.min.patch),
                     new_range.max.next_patch,
                     include_min=True,
                 )
@@ -80,4 +81,5 @@ def _patch_poetry_create(factory_mod) -> None:
 
 
 def activate() -> None:
-    _patch_poetry_create(factory_mod)
+    """Activate the plugin."""
+    _patch_poetry_create(core_factory_mod)
