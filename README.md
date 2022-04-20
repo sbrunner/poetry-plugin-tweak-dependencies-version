@@ -15,5 +15,5 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry-plugin-tweak-dependencies-version]
 default = "(major|minor|patch|full)" # Default to full
-<package> = "(major|minor|patch|full)"
+"<package>" = "(major|minor|patch|full)"
 ```
