@@ -53,27 +53,29 @@ def _patch_poetry_create(factory_mod) -> None:
             name = require.name
             version_type = config.get(name, versions_type)
 
-            new_range = require.constraint
+            constraint = require.constraint
+            if version_type == "present":
+                constraint = "*"
             if version_type == "major":
-                new_range = VersionRange(
-                    Version(new_range.min.major, 0, 0),
-                    new_range.max.next_major,
+                constraint = VersionRange(
+                    Version(constraint.min.major, 0, 0),
+                    constraint.max.next_major,
                     include_min=True,
                 )
             if version_type == "minor":
-                new_range = VersionRange(
-                    Version(new_range.min.major, new_range.min.minor, 0),
-                    new_range.max.next_minor,
+                constraint = VersionRange(
+                    Version(constraint.min.major, constraint.min.minor, 0),
+                    constraint.max.next_minor,
                     include_min=True,
                 )
             if version_type == "patch":
-                new_range = VersionRange(
-                    Version(new_range.min.major, new_range.min.minor, new_range.min.patch),
-                    new_range.max.next_patch,
+                constraint = VersionRange(
+                    Version(constraint.min.major, constraint.min.minor, constraint.min.patch),
+                    constraint.max.next_patch,
                     include_min=True,
                 )
 
-            instance.package.requires[index] = Dependency(name, new_range)
+            instance.package.requires[index] = Dependency(name, constraint)
 
         return instance
 

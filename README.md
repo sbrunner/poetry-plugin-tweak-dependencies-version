@@ -14,6 +14,8 @@ requires = ["poetry-core>=1.0.0", "poetry-plugin-tweak-dependencies-version"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry-plugin-tweak-dependencies-version]
-default = "(major|minor|patch|full)" # Default to full
-"<package>" = "(major|minor|patch|full)"
+default = "(present|major|minor|patch|full)" # Default to `full`
+"<package>" = "(present|major|minor|patch|full)"
 ```
+
+`present` => `*`, `major` => `x.*`, `minor` => `x.y.*`, `patch` => `x.y.z`, `full` => keep the original version.
