@@ -21,9 +21,6 @@ prospector = {version = "1.7.*", extras = ["with_bandit", "with_mypy", "with_pyr
 requires = ["poetry-core==1.0.7", "poetry-dynamic-versioning==0.14.0"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.poetry.plugins."poetry.plugin"]
-poetry-plugin-tweak-dependencies = "poetry_plugin_tweak_dependencies:TweakDependencyVersion"
-
 [tool.poetry-dynamic-versioning]
 enable = true
 vcs = "git"
