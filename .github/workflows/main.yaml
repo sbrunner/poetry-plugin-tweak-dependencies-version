@@ -24,6 +24,10 @@ jobs:
 
       - name: Checks
         run: c2cciutils-checks
+      - name: GitHub event
+        run: echo ${GITHUB_EVENT} | python3 -m json.tool
+        env:
+          GITHUB_EVENT: ${{ toJson(github) }}
 
       - run: pip install --use-pep517 .
 
@@ -45,8 +49,8 @@ jobs:
           echo "username = ${{ secrets.PYPI_USERNAME }}" >> ~/.pypirc
           echo "password = ${{ secrets.PYPI_PASSWORD }}" >> ~/.pypirc
           pip install --user wheel twine
-        if: env.GITHUB_REF_TYPE == 'tag'
+        if: "startsWith(github.ref, 'refs/tags/')"
 
       - name: Publish PyPI
         run: c2cciutils-publish
-        if: env.GITHUB_REF_TYPE == 'tag'
+        if: "startsWith(github.ref, 'refs/tags/')"
