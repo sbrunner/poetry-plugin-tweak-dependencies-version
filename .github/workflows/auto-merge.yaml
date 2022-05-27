@@ -2,9 +2,13 @@ name: Auto reviews updates
 
 on:
   pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
   workflow_run:
     workflows:
-      - Continuous integration
+      - None
     types:
       - completed
 
