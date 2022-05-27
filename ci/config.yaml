@@ -8,8 +8,3 @@ checks:
   codespell:
     ignore_re:
       - poetry.lock
-
-publish:
-  pypi:
-    packages:
-      - path: .
