@@ -15,7 +15,10 @@ bbbbb = "1.2.3"
 ccccc = "1.2.3"
 ddddd = "1.2.3"
 eeeee = "1.2.3"
+fffff = { version = "1.2.3", optional = true }
 
+[tool.poetry.extras]
+all = ["fffff"]
 
 [build-system]
 requires = ["poetry-core==1.0.7"]

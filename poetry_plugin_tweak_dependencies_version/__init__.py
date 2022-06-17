@@ -6,7 +6,6 @@ from typing import Mapping, Optional
 
 import tomlkit
 from poetry.core import factory as core_factory_mod  # type: ignore
-from poetry.core.packages.dependency import Dependency  # type: ignore
 from poetry.core.semver import parse_constraint  # type: ignore
 from poetry.core.semver.version import Version  # type: ignore
 from poetry.core.semver.version_range import VersionRange  # type: ignore
@@ -86,7 +85,7 @@ def _patch_poetry_create(factory_mod) -> None:
                         f"compatible with the nuw one '{version_type}'."
                     )
 
-            instance.package.requires[index] = Dependency(name, constraint)
+            instance.package.requires[index] = require.with_constraint(constraint)
 
         return instance
 
