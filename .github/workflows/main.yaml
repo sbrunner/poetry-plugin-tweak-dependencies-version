@@ -38,6 +38,7 @@ jobs:
       - run: "grep 'Requires-Dist: bbbbb (>=1.2.0,<1.3.0)' example-0.1.0.dist-info/METADATA"
       - run: "grep 'Requires-Dist: ccccc (>=1.2.3,<1.2.4)' example-0.1.0.dist-info/METADATA"
       - run: "grep 'Requires-Dist: ddddd (==1.2.3)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: eeeee (>=1.2.2,<=1.3.7)' example-0.1.0.dist-info/METADATA"
       - run: rm -rf example/dist/example-0.1.0-py3-none-any.whl example-0.1.0.dist-info example/__init__.py
 
       - run: poetry install

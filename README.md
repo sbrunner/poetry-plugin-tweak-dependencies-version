@@ -15,7 +15,8 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry-plugin-tweak-dependencies-version]
 default = "(present|major|minor|patch|full)" # Default to `full`
-"<package>" = "(present|major|minor|patch|full)"
+"<package>" = "(present|major|minor|patch|full|<alternate>)"
 ```
 
 `present` => `*`, `major` => `x.*`, `minor` => `x.y.*`, `patch` => `x.y.z`, `full` => keep the original version.
+Or just specify an alternate version constraint.

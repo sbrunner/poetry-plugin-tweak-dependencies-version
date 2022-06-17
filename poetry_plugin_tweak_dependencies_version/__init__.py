@@ -7,6 +7,7 @@ from typing import Mapping, Optional
 import tomlkit
 from poetry.core import factory as core_factory_mod  # type: ignore
 from poetry.core.packages.dependency import Dependency  # type: ignore
+from poetry.core.semver import parse_constraint  # type: ignore
 from poetry.core.semver.version import Version  # type: ignore
 from poetry.core.semver.version_range import VersionRange  # type: ignore
 
@@ -62,18 +63,28 @@ def _patch_poetry_create(factory_mod) -> None:
                     constraint.max.next_major,
                     include_min=True,
                 )
-            if version_type == "minor":
+            elif version_type == "minor":
                 constraint = VersionRange(
                     Version(constraint.min.major, constraint.min.minor, 0),
                     constraint.max.next_minor,
                     include_min=True,
                 )
-            if version_type == "patch":
+            elif version_type == "patch":
                 constraint = VersionRange(
                     Version(constraint.min.major, constraint.min.minor, constraint.min.patch),
                     constraint.max.next_patch,
                     include_min=True,
                 )
+            elif version_type == "full":
+                pass
+            elif version_type is not None:
+                old_constraint = constraint
+                constraint = parse_constraint(version_type)
+                if not constraint.allows_all(old_constraint):
+                    print(
+                        f"WARNING: the original constraint '{old_constraint}' don't looks to be "
+                        f"compatible with the nuw one '{version_type}'."
+                    )
 
             instance.package.requires[index] = Dependency(name, constraint)
 
