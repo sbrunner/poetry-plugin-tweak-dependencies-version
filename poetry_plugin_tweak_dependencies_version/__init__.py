@@ -56,7 +56,7 @@ def _patch_poetry_create(factory_mod) -> None:
             constraint = require.constraint
             if version_type == "present":
                 constraint = "*"
-            if version_type == "major":
+            elif version_type == "major":
                 constraint = VersionRange(
                     Version(constraint.min.major, 0, 0),
                     constraint.max.next_major,
