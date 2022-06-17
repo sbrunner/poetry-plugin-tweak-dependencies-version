@@ -15,7 +15,7 @@ python = "^3.8"
 poetry = "1.*"
 
 [tool.poetry.dev-dependencies]
-prospector = {version = "1.7.*", extras = ["with_bandit", "with_mypy", "with_pyroma"]}
+prospector = {version = "1.7.7", extras = ["with_bandit", "with_mypy", "with_pyroma"]}
 
 [build-system]
 requires = ["poetry-core==1.0.7", "poetry-dynamic-versioning==0.14.0"]
@@ -24,5 +24,4 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry-dynamic-versioning]
 enable = true
 vcs = "git"
-style = "semver"
 pattern = "^((?P<epoch>\\d+)!)?(?P<base>\\d+(\\.\\d+)*)"
