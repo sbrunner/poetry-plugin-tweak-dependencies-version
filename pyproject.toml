@@ -16,6 +16,8 @@ poetry = "1.*"
 
 [tool.poetry.dev-dependencies]
 prospector = {version = "1.7.7", extras = ["with_bandit", "with_mypy", "with_pyroma"]}
+pyflakes = "2.4.0"
+flake8 = "4.0.1"
 
 [build-system]
 requires = ["poetry-core==1.0.7", "poetry-dynamic-versioning==0.14.0"]
