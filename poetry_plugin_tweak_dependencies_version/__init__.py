@@ -4,7 +4,7 @@ import functools
 from pathlib import Path
 from typing import Mapping, Optional
 
-import tomlkit
+import tomlkit  # type: ignore
 from poetry.core import factory as core_factory_mod  # type: ignore
 from poetry.core.semver import parse_constraint  # type: ignore
 from poetry.core.semver.version import Version  # type: ignore
