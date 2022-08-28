@@ -25,5 +25,10 @@
       groupName: 'all minor versions',
       automerge: true,
     },
+    /** Disable for the test example */
+    {
+      matchFiles: ['example/pyproject.toml'],
+      enable: false,
+    },
   ],
 }
