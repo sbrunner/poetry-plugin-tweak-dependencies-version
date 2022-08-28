@@ -28,7 +28,7 @@
     /** Disable for the test example */
     {
       matchFiles: ['example/pyproject.toml'],
-      enable: false,
+      enabled: false,
     },
   ],
 }
