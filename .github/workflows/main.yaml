@@ -37,12 +37,33 @@ jobs:
       - run: (cd example/; poetry build -v)
       - run: unzip example/dist/example-0.1.0-py3-none-any.whl
       - run: cat example-0.1.0.dist-info/METADATA
-      - run: "grep 'Requires-Dist: aaaaa (>=1.0.0,<2.0.0)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: bbbbb (>=1.2.0,<1.3.0)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: ccccc (>=1.2.3,<1.2.4)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: ddddd (==1.2.3)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: eeeee (>=1.2.2,<=1.3.7)' example-0.1.0.dist-info/METADATA"
-      - run: 'grep ''Requires-Dist: fffff (==1.2.3); extra == "all"'' example-0.1.0.dist-info/METADATA'
+      - run: "grep 'Requires-Dist: dev_f (==1.2.3.dev4)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: dev_m (>=1.2.0.dev4,<1.3.0)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: dev_mm (>=1.0.0.dev4,<2.0.0)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: dev_p (>=1.2.3.dev4,<1.2.4)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: m_f (==1.2)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: m_m (>=1.2,<1.3)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: m_mm (>=1.0,<2.0)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: m_p (>=1.2,<1.2.1)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: mm_f (==1)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: mm_m (>=1,<1.1)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: mm_mm (>=1,<2)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: mm_p (>=1,<1.0.1)' example-0.1.0.dist-info/METADATA"
+      - run: 'grep ''Requires-Dist: optional (>=1.0.0,<2.0.0); extra == "all"'' example-0.1.0.dist-info/METADATA'
+      - run: "grep 'Requires-Dist: p_f (==1.2.3)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: p_m (>=1.2.0,<1.3.0)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: p_mm (>=1.0.0,<2.0.0)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: p_p (>=1.2.3,<1.2.4)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: post_f (==1.2.3.post5)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: post_m (>=1.2.0.post5,<1.3.0)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: post_mm (>=1.0.0.post5,<2.0.0)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: post_p (>=1.2.3.post5,<1.2.4)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: present' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: set (==4.5.6)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: t1 (>=1.0.0,<3.0.0)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: t2 (>=1.2.3,<2.4.5)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: t3 (>=1.0.0,<3.0.0)' example-0.1.0.dist-info/METADATA"
+
       - run: rm -rf example/dist/example-0.1.0-py3-none-any.whl example-0.1.0.dist-info example/__init__.py
 
       - run: poetry install
