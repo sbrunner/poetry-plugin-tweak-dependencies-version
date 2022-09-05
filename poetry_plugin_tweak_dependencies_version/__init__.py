@@ -1,97 +1,167 @@
 """Poetry plugin use to tweak the dependencies of the project."""
 
-import functools
-from pathlib import Path
-from typing import Mapping, Optional
+import re
+from typing import Any, Dict, Optional
 
-import tomlkit  # type: ignore
-from poetry.core import factory as core_factory_mod  # type: ignore
-from poetry.core.semver import parse_constraint  # type: ignore
-from poetry.core.semver.version import Version  # type: ignore
+import cleo.commands.command  # type: ignore
+import cleo.events.console_events  # type: ignore
+import cleo.io.io  # type: ignore
+from cleo.events.console_command_event import ConsoleCommandEvent  # type: ignore
+from cleo.events.event_dispatcher import EventDispatcher  # type: ignore
+from poetry.console.application import Application  # type: ignore
+from poetry.core.semver.helpers import parse_constraint  # type: ignore
+from poetry.core.semver.version import Release, Version  # type: ignore
+from poetry.core.semver.version_constraint import VersionConstraint  # type: ignore
 from poetry.core.semver.version_range import VersionRange  # type: ignore
+from poetry.plugins.application_plugin import ApplicationPlugin  # type: ignore
+
+_VERSION_RE = re.compile(r"^([1-9])+(\.([1-9])+(\.([1-9])+)?)?(.*)$")
 
 
-def _find_higher_file(*names: str, start: Path = None) -> Optional[Path]:
-    # Note: We need to make sure we get a pathlib object. Many tox poetry
-    # helpers will pass us a string and not a pathlib object. See issue #40.
-    if start is None:
-        start = Path.cwd()
-    elif not isinstance(start, Path):
-        start = Path(start)
-    for level in [start, *start.parents]:
-        for name in names:
-            if (level / name).is_file():
-                return level / name
-    return None
+class Plugin(ApplicationPlugin):
+    """Poetry plugin use to tweak the dependencies of the project."""
 
+    _application: Application
+    _pyproject: Dict[str, Any]
+    _plugin_config: Dict[str, Any]
+    _state: Dict[str, Dict[str, VersionConstraint]]
 
-def _get_pyproject_path(start: Optional[Path] = None) -> Optional[Path]:
-    return _find_higher_file("pyproject.toml", start=start)
+    def activate(self, application: Application) -> None:
+        """Activate the plugin."""
+        self._application = application
+        self._pyproject = self._application.poetry.pyproject.data
+        self._plugin_config = self._pyproject.get("tool", {}).get(
+            "poetry-plugin-tweak-dependencies-version", {}
+        )
+        for key, value in list(self._plugin_config.items()):
+            if "_" in key:
+                new_key = key.replace("_", "-")
+                if new_key not in self._plugin_config:
+                    self._plugin_config[new_key] = value
+        self._state = {}
 
+        application.event_dispatcher.add_listener(cleo.events.console_events.COMMAND, self._apply_version)
+        application.event_dispatcher.add_listener(cleo.events.console_events.SIGNAL, self._revert_version)
+        application.event_dispatcher.add_listener(cleo.events.console_events.TERMINATE, self._revert_version)
+        application.event_dispatcher.add_listener(cleo.events.console_events.ERROR, self._revert_version)
 
-def get_config(start: Optional[Path] = None) -> Mapping:
-    """Get the configuration for the plugin."""
-    pyproject_path = _get_pyproject_path(start)
-    if pyproject_path is None:
-        return {}
-    pyproject = tomlkit.parse(pyproject_path.read_text(encoding="utf-8"))
-    return pyproject.get("tool", {}).get("poetry-plugin-tweak-dependencies-version", {})
+    def _revert_version(self, event: ConsoleCommandEvent, kind: str, dispatcher: EventDispatcher):
+        pass
+        # self._pyproject.get("tool", {}).get("poetry", {})["dependencies"] = self._state["dependencies"]
 
+    def _zero(self, version_pice: Optional[int]):
+        return None if version_pice is None else 0
 
-def _patch_poetry_create(factory_mod) -> None:
-    original_poetry_create = getattr(factory_mod, "Factory").create_poetry
+    def _min(self, constraint, release_new):
+        return Version.parse(release_new.text) if (release_new < constraint.min.release) else constraint.min
 
-    @functools.wraps(original_poetry_create)
-    def alt_poetry_create(cls, *args, **kwargs):
-        instance = original_poetry_create(cls, *args, **kwargs)
+    def _apply_version(self, event: ConsoleCommandEvent, kind: str, dispatcher: EventDispatcher):
+        del event, kind, dispatcher
+        default_version_type = self._plugin_config.get("default", "full")
+        for group_name in self._application.poetry.package.dependency_group_names():
+            dependencies = self._application.poetry.package.dependency_group(group_name).dependencies
+            for index in range(len(dependencies)):  # pylint: disable=consider-using-enumerate
+                require = dependencies[index]
+                package_name = require.name
+                package_version_type = self._plugin_config.get(package_name, default_version_type)
 
-        config = get_config(kwargs.get("cwd", args[0]))
-        versions_type = config.get("default", "full")
+                constraint = require.constraint
+                self._state.setdefault(group_name, {})[package_name] = constraint
 
-        for index in range(len(instance.package.requires)):  # pylint: disable=consider-using-enumerate
-            require = instance.package.requires[index]
-            name = require.name
-            version_type = config.get(name, versions_type)
-
-            constraint = require.constraint
-            if version_type == "present":
-                constraint = "*"
-            elif version_type == "major":
-                constraint = VersionRange(
-                    Version(constraint.min.major, 0, 0),
-                    constraint.max.next_major,
-                    include_min=True,
-                )
-            elif version_type == "minor":
-                constraint = VersionRange(
-                    Version(constraint.min.major, constraint.min.minor, 0),
-                    constraint.max.next_minor,
-                    include_min=True,
-                )
-            elif version_type == "patch":
-                constraint = VersionRange(
-                    Version(constraint.min.major, constraint.min.minor, constraint.min.patch),
-                    constraint.max.next_patch,
-                    include_min=True,
-                )
-            elif version_type == "full":
-                pass
-            elif version_type is not None:
-                old_constraint = constraint
-                constraint = parse_constraint(version_type)
-                if not constraint.allows_all(old_constraint):
-                    print(
-                        f"WARNING: the original constraint '{old_constraint}' don't looks to be "
-                        f"compatible with the nuw one '{version_type}'."
+                # print(constraint.min.minor,constraint.max.minor)
+                if package_version_type == "present":
+                    constraint = "*"
+                elif package_version_type == "major":
+                    constraint = VersionRange(
+                        self._min(
+                            constraint,
+                            Release(
+                                constraint.min.major,
+                                self._zero(constraint.min.minor),
+                                self._zero(constraint.min.patch),
+                            ),
+                        ),
+                        constraint.max.next_major().next_major()
+                        if constraint.max.is_unstable()
+                        else constraint.max.next_major(),
+                        include_min=True,
                     )
+                elif package_version_type == "minor":
+                    constraint = VersionRange(
+                        self._min(
+                            constraint,
+                            Release(
+                                constraint.min.major,
+                                constraint.min.minor,
+                                self._zero(constraint.min.patch),
+                            ),
+                        ),
+                        constraint.max.next_minor().next_minor()
+                        if constraint.max.is_unstable()
+                        else constraint.max.next_minor(),
+                        include_min=True,
+                    )
+                elif package_version_type == "patch":
+                    constraint = VersionRange(
+                        self._min(
+                            constraint,
+                            Release(constraint.min.major, constraint.min.minor, constraint.min.patch),
+                        ),
+                        constraint.max.next_patch().next_patch()
+                        if constraint.max.is_unstable()
+                        else constraint.max.next_patch(),
+                        include_min=True,
+                    )
+                elif package_version_type == "full":
+                    pass
+                elif package_version_type is not None:
+                    old_constraint = constraint
+                    constraint = parse_constraint(package_version_type)
+                    if not constraint.allows_all(old_constraint):
+                        print(
+                            f"WARNING: the original constraint '{old_constraint}' don't looks to be "
+                            f"compatible with the new one '{package_version_type}'."
+                        )
 
-            instance.package.requires[index] = require.with_constraint(constraint)
+                if str(require.constraint) != str(constraint):
+                    print(f"{package_name}: {require.constraint} => {constraint}.")
+                require.constraint = constraint
 
-        return instance
+    def _apply_version_on(self, dependencies):
+        versions_type = self._plugin_config.get("default", "full")
 
-    getattr(factory_mod, "Factory").create_poetry = alt_poetry_create
+        for package_name, full_version in dependencies.items():
+            version = full_version["version"] if isinstance(full_version, dict) else full_version
+            if version.startswith("=="):
+                version = version[2:]
 
+            version_match = _VERSION_RE.match(version)
+            if version_match is None:
+                continue
 
-def activate() -> None:
-    """Activate the plugin."""
-    _patch_poetry_create(core_factory_mod)
+            package_version_type = self._plugin_config.get(package_name, versions_type)
+
+            if package_version_type == "present":
+                version = "*"
+            elif package_version_type == "major":
+                if version_match.group(2) is None and version_match.group(5) is None:
+                    version = version_match.group(0)
+                else:
+                    version = f"{version_match.group(0)}.*"
+            elif package_version_type == "minor":
+                if version_match.group(4) is None and version_match.group(5) is None:
+                    version = f"{version_match.group(0)}.{version_match.group(2)}"
+                else:
+                    version = f"{version_match.group(0)}.{version_match.group(2)}.*"
+            elif package_version_type == "patch":
+                if version_match.group(5) is not None:
+                    version = f"{version_match.group(0)}.{version_match.group(2)}.{version_match.group(4)}"
+            elif package_version_type == "full":
+                pass
+            elif package_version_type is not None:
+                version = package_version_type
+
+            if isinstance(full_version, dict):
+                full_version["version"] = version
+            else:
+                dependencies[package_name] = version
