@@ -46,8 +46,13 @@ class Plugin(ApplicationPlugin):
         application.event_dispatcher.add_listener(cleo.events.console_events.ERROR, self._revert_version)
 
     def _revert_version(self, event: ConsoleCommandEvent, kind: str, dispatcher: EventDispatcher):
-        pass
-        # self._pyproject.get("tool", {}).get("poetry", {})["dependencies"] = self._state["dependencies"]
+        del event, kind, dispatcher
+
+        for group_name, packages in self._state.items():
+            dependencies = self._application.poetry.package.dependency_group(group_name).dependencies
+            for dependency in dependencies:
+                if dependency.name in packages:
+                    dependency.constraint = packages[dependency.name]
 
     def _zero(self, version_pice: Optional[int]):
         return None if version_pice is None else 0
@@ -56,7 +61,11 @@ class Plugin(ApplicationPlugin):
         return Version.parse(release_new.text) if (release_new < constraint.min.release) else constraint.min
 
     def _apply_version(self, event: ConsoleCommandEvent, kind: str, dispatcher: EventDispatcher):
-        del event, kind, dispatcher
+        del kind, dispatcher
+
+        if event.command.name not in ('build',):
+            return
+
         default_version_type = self._plugin_config.get("default", "full")
         for group_name in self._application.poetry.package.dependency_group_names():
             dependencies = self._application.poetry.package.dependency_group(group_name).dependencies
