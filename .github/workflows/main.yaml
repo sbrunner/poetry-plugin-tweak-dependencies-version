@@ -3,9 +3,9 @@ name: Continuous integration
 on:
   push:
     branches:
-      - master
+    - master
     tags:
-      - '*'
+    - '*'
   pull_request:
 
 env:
@@ -19,64 +19,64 @@ jobs:
     if: "!startsWith(github.event.head_commit.message, '[skip ci] ')"
 
     steps:
-      - run: docker system prune --all --force
-      - uses: actions/checkout@v3
+    - run: docker system prune --all --force
+    - uses: actions/checkout@v3
 
-      - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
-      - run: python3 -m pip install --user --requirement=ci/requirements.txt
+    - run: echo "${HOME}/.local/bin" >> ${GITHUB_PATH}
+    - run: python3 -m pip install --user --requirement=ci/requirements.txt
 
-      - name: Checks
-        run: c2cciutils-checks
-      - name: GitHub event
-        run: echo ${GITHUB_EVENT} | python3 -m json.tool
-        env:
-          GITHUB_EVENT: ${{ toJson(github) }}
+    - name: Checks
+      run: c2cciutils-checks
+    - name: GitHub event
+      run: echo ${GITHUB_EVENT} | python3 -m json.tool
+      env:
+        GITHUB_EVENT: ${{ toJson(github) }}
 
-      - run: pip install --use-pep517 .
+    - run: pip install --use-pep517 .
 
-      - run: (cd example/; poetry build -v)
-      - run: unzip example/dist/example-0.1.0-py3-none-any.whl
-      - run: cat example-0.1.0.dist-info/METADATA
-      - run: "grep 'Requires-Dist: dev_f (==1.2.3.dev4)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: dev_m (>=1.2.0.dev4,<1.3.0)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: dev_mm (>=1.0.0.dev4,<2.0.0)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: dev_p (>=1.2.3.dev4,<1.2.4)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: m_f (==1.2)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: m_m (>=1.2,<1.3)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: m_mm (>=1.0,<2.0)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: m_p (>=1.2,<1.2.1)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: mm_f (==1)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: mm_m (>=1,<1.1)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: mm_mm (>=1,<2)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: mm_p (>=1,<1.0.1)' example-0.1.0.dist-info/METADATA"
-      - run: 'grep ''Requires-Dist: optional (>=1.0.0,<2.0.0); extra == "all"'' example-0.1.0.dist-info/METADATA'
-      - run: "grep 'Requires-Dist: p_f (==1.2.3)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: p_m (>=1.2.0,<1.3.0)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: p_mm (>=1.0.0,<2.0.0)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: p_p (>=1.2.3,<1.2.4)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: post_f (==1.2.3.post5)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: post_m (>=1.2.0.post5,<1.3.0)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: post_mm (>=1.0.0.post5,<2.0.0)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: post_p (>=1.2.3.post5,<1.2.4)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: present' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: set (==4.5.6)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: t1 (>=1.0.0,<3.0.0)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: t2 (>=1.2.3,<2.4.5)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: t3 (>=1.0.0,<3.0.0)' example-0.1.0.dist-info/METADATA"
+    - run: (cd example/; poetry build -v)
+    - run: unzip example/dist/example-0.1.0-py3-none-any.whl
+    - run: cat example-0.1.0.dist-info/METADATA
+    - run: "grep 'Requires-Dist: dev_f (==1.2.3.dev4)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: dev_m (>=1.2.0.dev4,<1.3.0)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: dev_mm (>=1.0.0.dev4,<2.0.0)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: dev_p (>=1.2.3.dev4,<1.2.4)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: m_f (==1.2)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: m_m (>=1.2,<1.3)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: m_mm (>=1.0,<2.0)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: m_p (>=1.2,<1.2.1)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: mm_f (==1)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: mm_m (>=1,<1.1)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: mm_mm (>=1,<2)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: mm_p (>=1,<1.0.1)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: optional (>=1.0.0,<2.0.0); extra == \"all\"' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: p_f (==1.2.3)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: p_m (>=1.2.0,<1.3.0)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: p_mm (>=1.0.0,<2.0.0)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: p_p (>=1.2.3,<1.2.4)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: post_f (==1.2.3.post5)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: post_m (>=1.2.0.post5,<1.3.0)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: post_mm (>=1.0.0.post5,<2.0.0)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: post_p (>=1.2.3.post5,<1.2.4)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: present' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: set (==4.5.6)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: t1 (>=1.0.0,<3.0.0)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: t2 (>=1.2.3,<2.4.5)' example-0.1.0.dist-info/METADATA"
+    - run: "grep 'Requires-Dist: t3 (>=1.0.0,<3.0.0)' example-0.1.0.dist-info/METADATA"
 
-      - run: rm -rf example/dist/example-0.1.0-py3-none-any.whl example-0.1.0.dist-info example/__init__.py
+    - run: rm -rf example/dist/example-0.1.0-py3-none-any.whl example-0.1.0.dist-info example/__init__.py
 
-      - run: poetry install
-      - run: poetry run prospector --output=pylint
+    - run: poetry install
+    - run: poetry run prospector --output=pylint
 
-      - name: Init pypi
-        run: |
-          echo "[pypi]" > ~/.pypirc
-          echo "username = ${{ secrets.PYPI_USERNAME }}" >> ~/.pypirc
-          echo "password = ${{ secrets.PYPI_PASSWORD }}" >> ~/.pypirc
-          pip install --user wheel twine
-        if: startsWith(github.ref, 'refs/tags/')
+    - name: Init pypi
+      run: |
+        echo "[pypi]" > ~/.pypirc
+        echo "username = ${{ secrets.PYPI_USERNAME }}" >> ~/.pypirc
+        echo "password = ${{ secrets.PYPI_PASSWORD }}" >> ~/.pypirc
+        pip install --user wheel twine
+      if: startsWith(github.ref, 'refs/tags/')
 
-      - name: Publish PyPI
-        run: c2cciutils-publish
-        if: startsWith(github.ref, 'refs/tags/')
+    - name: Publish PyPI
+      run: c2cciutils-publish
+      if: startsWith(github.ref, 'refs/tags/')
