@@ -1,3 +1,4 @@
 /example/dist/
 /example-0.1.0.dist-info/
 /example/__init__.py
+/.github/changelog-generator-cache
