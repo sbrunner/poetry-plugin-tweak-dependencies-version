@@ -64,8 +64,7 @@ jobs:
       - run: "grep 'Requires-Dist: t2 (>=1.2.3,<2.4.5)' example-0.1.0.dist-info/METADATA"
       - run: "grep 'Requires-Dist: t3 (>=1.0.0,<3.0.0)' example-0.1.0.dist-info/METADATA"
 
-      - run: rm -rf example/dist/example-0.1.0-py3-none-any.whl example-0.1.0.dist-info
-          example/__init__.py
+      - run: rm -rf example/dist/example-0.1.0-py3-none-any.whl example-0.1.0.dist-info example/__init__.py
 
       - run: poetry install
       - run: poetry run prospector --output=pylint
