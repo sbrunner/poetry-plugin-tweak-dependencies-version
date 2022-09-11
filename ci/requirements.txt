@@ -1,6 +1,6 @@
 c2cciutils==1.2.1
 poetry==1.2.0
 urllib3==1.26.12
-certifi==2022.6.15
+certifi==2022.6.15.1
 idna==3.3
 pip==22.2.2
