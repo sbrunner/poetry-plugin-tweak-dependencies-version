@@ -63,7 +63,7 @@ class Plugin(ApplicationPlugin):
     def _apply_version(self, event: ConsoleCommandEvent, kind: str, dispatcher: EventDispatcher):
         del kind, dispatcher
 
-        if event.command.name not in ('build',):
+        if event.command.name not in ("build",):
             return
 
         default_version_type = self._plugin_config.get("default", "full")
