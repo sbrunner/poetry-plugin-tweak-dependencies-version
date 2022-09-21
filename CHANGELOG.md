@@ -4,33 +4,28 @@
 
 [Full Changelog](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/compare/0.2.1...1.0.0)
 
-#### :sparkles: Enhancements
+**Implemented enhancements:**
 
 - Remove hourly limit [\#50](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/50) ([sbrunner](https://github.com/sbrunner))
 
-#### :bug: Bug Fixes
+**Fixed bugs:**
 
 - Fix the upgrade to Poetry 1.2 [\#78](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/78) ([sbrunner](https://github.com/sbrunner))
 
-#### :books: Documentation
+**Closed issues:**
 
-- Add generated changelog [\#40](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/40) ([sbrunner](https://github.com/sbrunner))
+- Action Required: Fix Renovate Configuration [\#69](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/issues/69)
 
-#### :wrench: Build, CI, Tests, Code style
-
-- Disable for the test example [\#68](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/68) ([sbrunner](https://github.com/sbrunner))
-- Disable the Renovate concurrent limit [\#66](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/66) ([sbrunner](https://github.com/sbrunner))
-- Add spell on the pull request title [\#64](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/64) ([sbrunner](https://github.com/sbrunner))
-- Update the changelog [\#42](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/42) ([github-actions[bot]](https://github.com/apps/github-actions))
-- Update the changelog [\#41](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/41) ([github-actions[bot]](https://github.com/apps/github-actions))
-
-#### :package: Dependencies update
+**Merged pull requests:**
 
 - Lock file maintenance [\#77](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/77) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency poetry to v1.2.0 [\#76](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/76) ([renovate[bot]](https://github.com/apps/renovate))
 - Lock file maintenance [\#70](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/70) ([renovate[bot]](https://github.com/apps/renovate))
+- Disable for the test example [\#68](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/68) ([sbrunner](https://github.com/sbrunner))
 - Update all patch versions \(patch\) [\#67](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/67) ([renovate[bot]](https://github.com/apps/renovate))
+- Disable the Renovate concurrent limit [\#66](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/66) ([sbrunner](https://github.com/sbrunner))
 - Lock file maintenance [\#65](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/65) ([renovate[bot]](https://github.com/apps/renovate))
+- Add spell on the pull request title [\#64](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/64) ([sbrunner](https://github.com/sbrunner))
 - Lock file maintenance [\#63](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/63) ([renovate[bot]](https://github.com/apps/renovate))
 - Lock file maintenance [\#62](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/62) ([renovate[bot]](https://github.com/apps/renovate))
 - Update all patch versions \(patch\) [\#57](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/57) ([renovate[bot]](https://github.com/apps/renovate))
@@ -42,14 +37,13 @@
 - Lock file maintenance [\#47](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/47) ([renovate[bot]](https://github.com/apps/renovate))
 - Lock file maintenance [\#44](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/44) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency c2cciutils to v1.2.0 [\#43](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/43) ([renovate[bot]](https://github.com/apps/renovate))
+- Update the changelog [\#42](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/42) ([github-actions[bot]](https://github.com/apps/github-actions))
+- Update the changelog [\#41](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/41) ([github-actions[bot]](https://github.com/apps/github-actions))
+- Add generated changelog [\#40](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/40) ([sbrunner](https://github.com/sbrunner))
 - Lock file maintenance [\#35](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/35) ([renovate[bot]](https://github.com/apps/renovate))
 - Lock file maintenance [\#34](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/34) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency certifi to v2022.6.15 [\#33](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/33) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency c2cciutils to v1.2.dev20220617064142 [\#32](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/32) ([renovate[bot]](https://github.com/apps/renovate))
-
-**Closed issues:**
-
-- Action Required: Fix Renovate Configuration [\#69](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/issues/69)
 
 ## [0.2.1](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/tree/0.2.1) (2022-06-17)
 
@@ -59,12 +53,12 @@
 
 [Full Changelog](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/compare/0.1.7...0.2.0)
 
-#### :sparkles: Enhancements
+**Implemented enhancements:**
 
 - Add support of extra [\#31](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/31) ([sbrunner](https://github.com/sbrunner))
 - Be able to specify an alternate version [\#30](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/30) ([sbrunner](https://github.com/sbrunner))
 
-#### :package: Dependencies update
+**Merged pull requests:**
 
 - Lock file maintenance [\#28](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/28) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency c2cciutils to v1.2.dev20220609220245 [\#27](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/27) ([renovate[bot]](https://github.com/apps/renovate))
@@ -103,7 +97,7 @@
 
 [Full Changelog](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/compare/0.1.0...0.1.1)
 
-#### :package: Dependencies update
+**Merged pull requests:**
 
 - Lock file maintenance [\#15](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/15) ([renovate[bot]](https://github.com/apps/renovate))
 - Lock file maintenance [\#14](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/14) ([renovate[bot]](https://github.com/apps/renovate))
@@ -112,11 +106,7 @@
 
 [Full Changelog](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/compare/a4608ae0f4b11ff7657f3117ba924acfd7e8db30...0.1.0)
 
-#### :wrench: Build, CI, Tests, Code style
-
-- Add CI [\#1](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/1) ([sbrunner](https://github.com/sbrunner))
-
-#### :package: Dependencies update
+**Merged pull requests:**
 
 - Lock file maintenance [\#13](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/13) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency c2cciutils to v1.1.10 [\#12](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/12) ([renovate[bot]](https://github.com/apps/renovate))
@@ -127,5 +117,6 @@
 - Bump c2cciutils from 1.1.5 to 1.1.9 [\#7](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/7) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump pylint from 2.13.5 to 2.13.6 [\#6](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/6) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump astroid from 2.11.2 to 2.11.3 [\#5](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/5) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Add CI [\#1](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/1) ([sbrunner](https://github.com/sbrunner))
 
 \* _This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)_
