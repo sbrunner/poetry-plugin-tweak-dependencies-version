@@ -3,4 +3,4 @@ poetry==1.2.1
 urllib3==1.26.12
 certifi==2022.9.24
 idna==3.4
-pip==22.2.2
+pip==22.3
