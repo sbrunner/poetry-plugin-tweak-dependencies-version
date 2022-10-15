@@ -9,10 +9,11 @@ import cleo.io.io  # type: ignore
 from cleo.events.console_command_event import ConsoleCommandEvent  # type: ignore
 from cleo.events.event_dispatcher import EventDispatcher  # type: ignore
 from poetry.console.application import Application  # type: ignore
-from poetry.core.semver.helpers import parse_constraint  # type: ignore
-from poetry.core.semver.version import Release, Version  # type: ignore
-from poetry.core.semver.version_constraint import VersionConstraint  # type: ignore
-from poetry.core.semver.version_range import VersionRange  # type: ignore
+from poetry.core.constraints.version import Version  # type: ignore
+from poetry.core.constraints.version import VersionConstraint  # type: ignore
+from poetry.core.constraints.version import VersionRange  # type: ignore
+from poetry.core.constraints.version import parse_constraint  # type: ignore
+from poetry.core.version.pep440 import Release  # type: ignore
 from poetry.plugins.application_plugin import ApplicationPlugin  # type: ignore
 
 _VERSION_RE = re.compile(r"^([1-9])+(\.([1-9])+(\.([1-9])+)?)?(.*)$")
