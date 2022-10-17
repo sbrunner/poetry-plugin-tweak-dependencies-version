@@ -1,5 +1,49 @@
 # Changelog
 
+## [1.0.1](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/tree/1.0.1) (2022-10-17)
+
+[Full Changelog](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/compare/1.1.0...1.0.1)
+
+## [1.1.0](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/tree/1.1.0) (2022-10-16)
+
+[Full Changelog](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/compare/1.0.0...1.1.0)
+
+#### :sparkles: Enhancements
+
+- Update for new version of Poetry core [\#107](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/107) ([sbrunner](https://github.com/sbrunner))
+
+#### :wrench: Build, CI, Tests, Code style
+
+- Fix the get config in changelog workflow [\#98](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/98) ([sbrunner](https://github.com/sbrunner))
+- Group Poetry packages in Renovate pull requests [\#96](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/96) ([sbrunner](https://github.com/sbrunner))
+- Schedule Renovate on early saturday [\#95](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/95) ([sbrunner](https://github.com/sbrunner))
+- Update the Renovate scheduling [\#88](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/88) ([sbrunner](https://github.com/sbrunner))
+- Fix the changelog generator workflow [\#86](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/86) ([sbrunner](https://github.com/sbrunner))
+- Clean all the images already present in the image given by GitHub [\#84](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/84) ([sbrunner](https://github.com/sbrunner))
+- Clean all the images already present in the image given by GitHub [\#83](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/83) ([sbrunner](https://github.com/sbrunner))
+- Add the changelog generation cache in Git ignore [\#81](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/81) ([sbrunner](https://github.com/sbrunner))
+- Update the changelog generation workflow [\#80](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/80) ([sbrunner](https://github.com/sbrunner))
+- Remove Dependabot configuration [\#79](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/79) ([sbrunner](https://github.com/sbrunner))
+- Update the changelog [\#45](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/45) ([github-actions[bot]](https://github.com/apps/github-actions))
+
+#### :package: Dependencies update
+
+- Update dependency c2cciutils to v1.3.10 [\#109](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/109) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency pip to v22.3 [\#108](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/108) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency poetry to v1.2.2 [\#106](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/106) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency c2cciutils to v1.3.9 [\#105](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/105) ([renovate[bot]](https://github.com/apps/renovate))
+- Lock file maintenance [\#104](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/104) ([renovate[bot]](https://github.com/apps/renovate))
+- Lock file maintenance [\#103](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/103) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency c2cciutils to v1.3.7 [\#102](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/102) ([renovate[bot]](https://github.com/apps/renovate))
+- Lock file maintenance [\#101](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/101) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency certifi to v2022.9.24 [\#100](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/100) ([sbrunner](https://github.com/sbrunner))
+- Update dependency c2cciutils to v1.3.5 [\#99](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/99) ([renovate[bot]](https://github.com/apps/renovate))
+- Lock file maintenance [\#94](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/94) ([renovate[bot]](https://github.com/apps/renovate))
+- Update all minor versions \(minor\) [\#93](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/93) ([renovate[bot]](https://github.com/apps/renovate))
+- Update all patch versions \(patch\) [\#92](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/92) ([renovate[bot]](https://github.com/apps/renovate))
+- Lock file maintenance [\#90](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/90) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency certifi to v2022.6.15.1 [\#89](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/89) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [1.0.0](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/tree/1.0.0) (2022-09-05)
 
 [Full Changelog](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/compare/0.2.1...1.0.0)
