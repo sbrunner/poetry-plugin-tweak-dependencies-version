@@ -11,7 +11,8 @@ authors = ["Stéphane Brunner <stephane.brunner@camptocamp.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-poetry = ">=1.2.0"
+poetry = "1.2.*"
+poetry-core = "1.2.*"
 
 [tool.poetry.dev-dependencies]
 prospector = { version = "1.7.7", extras = ["with_bandit", "with_mypy", "with_pyroma"] }
