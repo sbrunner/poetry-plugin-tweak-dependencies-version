@@ -9,7 +9,7 @@ description = "Example"
 authors = ["Stéphane Brunner <stephane.brunner@camptocamp.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = ">=3.10,<3.11"
 mm_mm = "1"
 mm_m = "1"
 mm_p = "1"
