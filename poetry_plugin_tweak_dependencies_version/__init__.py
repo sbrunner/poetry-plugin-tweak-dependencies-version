@@ -12,6 +12,7 @@ from poetry.console.application import Application  # type: ignore
 from poetry.core.constraints.version import Version  # type: ignore
 from poetry.core.constraints.version import VersionConstraint  # type: ignore
 from poetry.core.constraints.version import VersionRange  # type: ignore
+from poetry.core.constraints.version import VersionRangeConstraint  # type: ignore
 from poetry.core.constraints.version import parse_constraint  # type: ignore
 from poetry.core.version.pep440 import Release  # type: ignore
 from poetry.plugins.application_plugin import ApplicationPlugin  # type: ignore
@@ -80,8 +81,11 @@ class Plugin(ApplicationPlugin):
 
                 # print(constraint.min.minor,constraint.max.minor)
                 if package_version_type == "present":
-                    constraint = "*"
+                    constraint = VersionRange()
                 elif package_version_type == "major":
+                    assert isinstance(constraint, VersionRangeConstraint)
+                    assert constraint.min is not None
+                    assert constraint.max is not None
                     constraint = VersionRange(
                         self._min(
                             constraint,
@@ -97,6 +101,9 @@ class Plugin(ApplicationPlugin):
                         include_min=True,
                     )
                 elif package_version_type == "minor":
+                    assert isinstance(constraint, VersionRangeConstraint)
+                    assert constraint.min is not None
+                    assert constraint.max is not None
                     constraint = VersionRange(
                         self._min(
                             constraint,
@@ -112,6 +119,9 @@ class Plugin(ApplicationPlugin):
                         include_min=True,
                     )
                 elif package_version_type == "patch":
+                    assert isinstance(constraint, VersionRangeConstraint)
+                    assert constraint.min is not None
+                    assert constraint.max is not None
                     constraint = VersionRange(
                         self._min(
                             constraint,
