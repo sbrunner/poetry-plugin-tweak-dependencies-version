@@ -3,19 +3,22 @@
 import re
 from typing import Any, Dict, Optional
 
-import cleo.commands.command  # type: ignore
-import cleo.events.console_events  # type: ignore
-import cleo.io.io  # type: ignore
-from cleo.events.console_command_event import ConsoleCommandEvent  # type: ignore
-from cleo.events.event_dispatcher import EventDispatcher  # type: ignore
-from poetry.console.application import Application  # type: ignore
-from poetry.core.constraints.version import Version  # type: ignore
-from poetry.core.constraints.version import VersionConstraint  # type: ignore
-from poetry.core.constraints.version import VersionRange  # type: ignore
-from poetry.core.constraints.version import VersionRangeConstraint  # type: ignore
-from poetry.core.constraints.version import parse_constraint  # type: ignore
-from poetry.core.version.pep440 import Release  # type: ignore
-from poetry.plugins.application_plugin import ApplicationPlugin  # type: ignore
+import cleo.commands.command
+import cleo.events.console_events
+import cleo.io.io
+from cleo.events.console_command_event import ConsoleCommandEvent
+from cleo.events.event import Event
+from cleo.events.event_dispatcher import EventDispatcher
+from poetry.console.application import Application
+from poetry.core.constraints.version import (
+    Version,
+    VersionConstraint,
+    VersionRange,
+    VersionRangeConstraint,
+    parse_constraint,
+)
+from poetry.core.version.pep440 import Release
+from poetry.plugins.application_plugin import ApplicationPlugin
 
 _VERSION_RE = re.compile(r"^([1-9])+(\.([1-9])+(\.([1-9])+)?)?(.*)$")
 
@@ -42,12 +45,14 @@ class Plugin(ApplicationPlugin):
                     self._plugin_config[new_key] = value
         self._state = {}
 
-        application.event_dispatcher.add_listener(cleo.events.console_events.COMMAND, self._apply_version)
-        application.event_dispatcher.add_listener(cleo.events.console_events.SIGNAL, self._revert_version)
-        application.event_dispatcher.add_listener(cleo.events.console_events.TERMINATE, self._revert_version)
-        application.event_dispatcher.add_listener(cleo.events.console_events.ERROR, self._revert_version)
+        event_dispatcher = application.event_dispatcher
+        assert event_dispatcher is not None
+        event_dispatcher.add_listener(cleo.events.console_events.COMMAND, self._apply_version)
+        event_dispatcher.add_listener(cleo.events.console_events.SIGNAL, self._revert_version)
+        event_dispatcher.add_listener(cleo.events.console_events.TERMINATE, self._revert_version)
+        event_dispatcher.add_listener(cleo.events.console_events.ERROR, self._revert_version)
 
-    def _revert_version(self, event: ConsoleCommandEvent, kind: str, dispatcher: EventDispatcher):
+    def _revert_version(self, event: Event, kind: str, dispatcher: EventDispatcher):
         del event, kind, dispatcher
 
         for group_name, packages in self._state.items():
@@ -62,8 +67,9 @@ class Plugin(ApplicationPlugin):
     def _min(self, constraint, release_new):
         return Version.parse(release_new.text) if (release_new < constraint.min.release) else constraint.min
 
-    def _apply_version(self, event: ConsoleCommandEvent, kind: str, dispatcher: EventDispatcher):
+    def _apply_version(self, event: Event, kind: str, dispatcher: EventDispatcher):
         del kind, dispatcher
+        assert isinstance(event, ConsoleCommandEvent)
 
         if event.command.name not in ("build",):
             return
