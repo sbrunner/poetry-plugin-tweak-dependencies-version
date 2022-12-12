@@ -52,7 +52,7 @@ jobs:
       - run: "grep 'Requires-Dist: mm_m (>=1,<1.1)' example-0.1.0.dist-info/METADATA"
       - run: "grep 'Requires-Dist: mm_mm (>=1,<2)' example-0.1.0.dist-info/METADATA"
       - run: "grep 'Requires-Dist: mm_p (>=1,<1.0.1)' example-0.1.0.dist-info/METADATA"
-      - run: 'grep ''Requires-Dist: optional (>=1.0.0,<2.0.0); extra == "all"'' example-0.1.0.dist-info/METADATA'
+      - run: 'grep ''Requires-Dist: optional (>=1.0.0,<2.0.0) ; extra == "all"'' example-0.1.0.dist-info/METADATA'
       - run: "grep 'Requires-Dist: p_f (==1.2.3)' example-0.1.0.dist-info/METADATA"
       - run: "grep 'Requires-Dist: p_m (>=1.2.0,<1.3.0)' example-0.1.0.dist-info/METADATA"
       - run: "grep 'Requires-Dist: p_mm (>=1.0.0,<2.0.0)' example-0.1.0.dist-info/METADATA"
