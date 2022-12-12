@@ -1,5 +1,42 @@
 # Changelog
 
+## [1.2.0](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/tree/1.2.0) (2022-12-12)
+
+[Full Changelog](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/compare/1.0.1...1.2.0)
+
+#### :wrench: Build, CI, Tests, Code style
+
+- Configure Renovate to run monthly [\#137](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/137) ([sbrunner](https://github.com/sbrunner))
+- Configure Mend Bolt [\#135](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/135) ([sbrunner](https://github.com/sbrunner))
+- Upgrade deprecated set-output commands [\#126](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/126) ([sbrunner](https://github.com/sbrunner))
+- Create or update a Poetry group for Renovate [\#123](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/123) ([sbrunner](https://github.com/sbrunner))
+- Fix repository in workflow used to delete old workflow runs [\#119](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/119) ([sbrunner](https://github.com/sbrunner))
+- Fix repository in workflow used to delete old workflow runs [\#118](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/118) ([sbrunner](https://github.com/sbrunner))
+- Add workflow to delete old workflow runs [\#115](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/115) ([sbrunner](https://github.com/sbrunner))
+- Update the changelog [\#110](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/110) ([github-actions[bot]](https://github.com/apps/github-actions))
+
+#### :package: Dependencies update
+
+- Update dependency poetry to v1.3.1 [\#145](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/145) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency certifi to v2022.12.7 \[SECURITY\] [\#142](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/142) ([renovate[bot]](https://github.com/apps/renovate))
+- Update all minor versions \(minor\) [\#131](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/131) ([renovate[bot]](https://github.com/apps/renovate))
+- Lock file maintenance [\#130](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/130) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency poetry-core to ==1.4.\* [\#129](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/129) ([renovate[bot]](https://github.com/apps/renovate))
+- Update all patch versions \(patch\) [\#128](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/128) ([renovate[bot]](https://github.com/apps/renovate))
+- Lock file maintenance [\#127](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/127) ([renovate[bot]](https://github.com/apps/renovate))
+- Lock file maintenance [\#124](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/124) ([renovate[bot]](https://github.com/apps/renovate))
+- Lock file maintenance [\#122](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/122) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency pip to v22.3.1 [\#120](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/120) ([sbrunner](https://github.com/sbrunner))
+- Lock file maintenance [\#117](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/117) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency c2cciutils to v1.3.11 [\#116](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/116) ([renovate[bot]](https://github.com/apps/renovate))
+- Lock file maintenance [\#114](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/114) ([renovate[bot]](https://github.com/apps/renovate))
+- Lock file maintenance [\#113](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/113) ([renovate[bot]](https://github.com/apps/renovate))
+- Lock file maintenance [\#111](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/pull/111) ([renovate[bot]](https://github.com/apps/renovate))
+
+**Closed issues:**
+
+- certifi-2022.9.24-py3-none-any.whl: 1 vulnerabilities \(highest severity is: 6.8\) - autoclosed [\#138](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/issues/138)
+
 ## [1.0.1](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/tree/1.0.1) (2022-10-17)
 
 [Full Changelog](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/compare/1.1.0...1.0.1)
