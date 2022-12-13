@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.1](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/tree/1.2.1) (2022-12-12)
+
+[Full Changelog](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/compare/1.2.0...1.2.1)
+
 ## [1.2.0](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/tree/1.2.0) (2022-12-12)
 
 [Full Changelog](https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/compare/1.0.1...1.2.0)
