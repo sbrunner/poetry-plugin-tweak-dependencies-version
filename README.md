@@ -21,3 +21,12 @@ default = "(present|major|minor|patch|full)" # Default to `full`
 
 `present` => `*`, `major` => `x.*`, `minor` => `x.y.*`, `patch` => `x.y.z`, `full` => keep the original version.
 Or just specify an alternate version constraint.
+
+## Contributing
+
+Install the pre-commit hooks:
+
+```bash
+pip install pre-commit
+pre-commit install --allow-missing-config
+```
