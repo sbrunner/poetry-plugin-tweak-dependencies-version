@@ -95,4 +95,5 @@ jobs:
         run: c2cciutils-publish
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         if: startsWith(github.ref, 'refs/tags/')
