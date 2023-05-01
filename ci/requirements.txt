@@ -4,4 +4,4 @@ urllib3==1.26.15
 certifi==2022.12.7
 idna==3.4
 pip==23.0.1
-pre-commit==3.2.1
+pre-commit==3.2.2
