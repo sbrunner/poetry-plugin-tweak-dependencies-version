@@ -85,11 +85,10 @@ jobs:
       - run: poetry run prospector --output=pylint
 
       - name: Init pypi
-        run: |
+        run: |-
           echo "[pypi]" > ~/.pypirc
           echo "username = ${{ secrets.PYPI_USERNAME }}" >> ~/.pypirc
           echo "password = ${{ secrets.PYPI_PASSWORD }}" >> ~/.pypirc
-          pip install --user wheel twine
         if: startsWith(github.ref, 'refs/tags/')
 
       - name: Publish PyPI
