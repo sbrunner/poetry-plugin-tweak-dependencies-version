@@ -77,7 +77,7 @@ jobs:
       - run: "grep 'Requires-Dist: set (==4.5.6)' example-0.1.0.dist-info/METADATA"
       - run: "grep 'Requires-Dist: t1 (>=1.0.0,<3.0.0)' example-0.1.0.dist-info/METADATA"
       - run: "grep 'Requires-Dist: t2 (>=1.2.3,<2.4.5)' example-0.1.0.dist-info/METADATA"
-      - run: "grep 'Requires-Dist: t3 (>=1.0.0,<3.0.0)' example-0.1.0.dist-info/METADATA"
+      - run: "grep 'Requires-Dist: t3 (>=1.dev0,<3)' example-0.1.0.dist-info/METADATA"
 
       - run: rm -rf example/dist/example-0.1.0-py3-none-any.whl example-0.1.0.dist-info example/__init__.py
 
