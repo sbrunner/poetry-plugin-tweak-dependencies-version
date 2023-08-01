@@ -1,4 +1,4 @@
 c2cciutils[checks,publish]==1.5.7
 poetry==1.5.1
-pip==23.1.2
+pip==23.2.1
 pre-commit==3.3.3
