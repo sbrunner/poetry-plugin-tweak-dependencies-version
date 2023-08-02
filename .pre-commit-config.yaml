@@ -46,6 +46,10 @@ repos:
           - prettier-plugin-sh@0.13.1 # npm
           - prettier-plugin-toml@0.4.0 # npm
           - '@prettier/plugin-xml@0.12.0' # npm
+        exclude: |-
+          (?x)(
+            \.gitignore
+          )$
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.9.0.2
     hooks:
