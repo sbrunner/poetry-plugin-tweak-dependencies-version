@@ -1,7 +1,7 @@
 """Poetry plugin use to tweak the dependencies of the project."""
 
 import re
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 import cleo.commands.command
 import cleo.events.console_events
@@ -27,9 +27,9 @@ class Plugin(ApplicationPlugin):
     """Poetry plugin use to tweak the dependencies of the project."""
 
     _application: Application
-    _pyproject: Dict[str, Any]
-    _plugin_config: Dict[str, Any]
-    _state: Dict[str, Dict[str, VersionConstraint]]
+    _pyproject: dict[str, Any]
+    _plugin_config: dict[str, Any]
+    _state: dict[str, dict[str, VersionConstraint]]
 
     def activate(self, application: Application) -> None:
         """Activate the plugin."""

@@ -1,6 +1,6 @@
 [tool.black]
 line-length = 110
-target-version = ['py38']
+target-version = ["py39"]
 
 [tool.isort]
 profile = "black"
@@ -25,7 +25,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.8,<3.12"
+python = ">=3.9,<3.12"
 poetry = "==1.5.*"
 
 [tool.poetry.dev-dependencies]
