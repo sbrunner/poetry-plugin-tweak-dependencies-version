@@ -43,6 +43,8 @@ enable = true
 vcs = "git"
 pattern = "^((?P<epoch>\\d+)!)?(?P<base>\\d+(\\.\\d+)*)"
 
+[tool.poetry-plugin-tweak-dependencies-version]
+default = "present"
 [build-system]
-requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning", "poetry-plugin-drop-python-upper-constraint"]
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning", "poetry-plugin-drop-python-upper-constraint", "poetry-plugin-tweak-dependencies-version"]
 build-backend = "poetry.core.masonry.api"
