@@ -30,7 +30,7 @@ poetry = "==1.6.*"
 
 [tool.poetry.dev-dependencies]
 # pylint = "2.15.6"
-prospector = { version = "1.10.2", extras = ["with_bandit", "with_mypy", "with_pyroma"] }
+prospector = { version = "1.10.3", extras = ["with_bandit", "with_mypy", "with_pyroma"] }
 
 [tool.poetry.plugins."poetry.application.plugin"]
 tweak_dependencies_version = "poetry_plugin_tweak_dependencies_version:Plugin"
