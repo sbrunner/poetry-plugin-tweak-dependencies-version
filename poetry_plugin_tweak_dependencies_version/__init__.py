@@ -101,9 +101,11 @@ class Plugin(ApplicationPlugin):
                                 self._zero(constraint.min.patch),
                             ),
                         ),
-                        constraint.max.next_major().next_major()
-                        if constraint.max.is_unstable()
-                        else constraint.max.next_major(),
+                        (
+                            constraint.max.next_major().next_major()
+                            if constraint.max.is_unstable()
+                            else constraint.max.next_major()
+                        ),
                         include_min=True,
                     )
                 elif package_version_type == "minor":
@@ -119,9 +121,11 @@ class Plugin(ApplicationPlugin):
                                 self._zero(constraint.min.patch),
                             ),
                         ),
-                        constraint.max.next_minor().next_minor()
-                        if constraint.max.is_unstable()
-                        else constraint.max.next_minor(),
+                        (
+                            constraint.max.next_minor().next_minor()
+                            if constraint.max.is_unstable()
+                            else constraint.max.next_minor()
+                        ),
                         include_min=True,
                     )
                 elif package_version_type == "patch":
@@ -133,9 +137,11 @@ class Plugin(ApplicationPlugin):
                             constraint,
                             Release(constraint.min.major, constraint.min.minor, constraint.min.patch),
                         ),
-                        constraint.max.next_patch().next_patch()
-                        if constraint.max.is_unstable()
-                        else constraint.max.next_patch(),
+                        (
+                            constraint.max.next_patch().next_patch()
+                            if constraint.max.is_unstable()
+                            else constraint.max.next_patch()
+                        ),
                         include_min=True,
                     )
                 elif package_version_type == "full":
