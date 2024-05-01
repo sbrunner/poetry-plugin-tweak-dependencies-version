@@ -37,7 +37,7 @@ prospector = { version = "1.10.3", extras = ["with_bandit", "with_mypy", "with_p
 tweak_dependencies_version = "poetry_plugin_tweak_dependencies_version:Plugin"
 
 [tool.poetry.group.dev.dependencies]
-prospector-profile-duplicated = "1.2.0"
+prospector-profile-duplicated = "1.5.0"
 
 [tool.poetry-dynamic-versioning]
 enable = true
