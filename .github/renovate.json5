@@ -53,10 +53,10 @@
     },
     /** Group Poetry packages */
     {
-      matchPackageNames: ['poetry', 'pip'],
       matchPackagePrefixes: ['poetry-'],
       groupName: 'Poetry',
       automerge: true,
+      matchDepNames: ['poetry', 'pip'],
     },
     /** Disable for the test example */
     {
@@ -65,14 +65,14 @@
     },
     /** Support the 4 parts of shellcheck-py version with a v prefix */
     {
-      matchPackageNames: ['shellcheck-py/shellcheck-py'],
       versioning: 'regex:^v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)$',
+      matchDepNames: ['shellcheck-py/shellcheck-py'],
     },
     /** Disable update of Python version in pyproject.toml */
     {
       matchFiles: ['pyproject.toml'],
-      matchPackageNames: ['python'],
       enabled: false,
+      matchDepNames: ['python'],
     },
     /** Group and auto merge the CI dependencies */
     {
