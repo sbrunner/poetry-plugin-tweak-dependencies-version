@@ -28,6 +28,7 @@ classifiers = [
 python = ">=3.9,<3.12"
 poetry = "==1.8.*"
 idna = "3.7"
+cryptography = "42.0.8"
 
 [tool.poetry.dev-dependencies]
 # pylint = "2.15.6"
