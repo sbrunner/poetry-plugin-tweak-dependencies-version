@@ -30,6 +30,7 @@ poetry = "==1.8.*"
 idna = "3.7"
 cryptography = "42.0.8"
 urllib3 = "2.2.2"
+certifi = "2024.7.4"
 
 [tool.poetry.dev-dependencies]
 # pylint = "2.15.6"
