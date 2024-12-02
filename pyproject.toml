@@ -25,7 +25,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.14"
+python = ">=3.9.2,<3.14"
 poetry = "==1.8.*"
 idna = "3.10"
 cryptography = "44.0.0"
