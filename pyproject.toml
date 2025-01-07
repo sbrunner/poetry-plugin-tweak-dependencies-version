@@ -21,7 +21,7 @@ classifiers = [
     'Programming Language :: Python :: 3.13',
     'Typing :: Typed',
 ]
-packages = [{ include = "poetry_plugin_tweak_dependencies_version/py.typed" }]
+packages = [{ include = "poetry_plugin_tweak_dependencies_version" }, { include = "poetry_plugin_tweak_dependencies_version/py.typed" }]
 
 [tool.poetry.dependencies]
 python = ">=3.9.2,<3.14"
