@@ -52,7 +52,7 @@ class Plugin(ApplicationPlugin):
         event_dispatcher.add_listener(cleo.events.console_events.TERMINATE, self._revert_version)
         event_dispatcher.add_listener(cleo.events.console_events.ERROR, self._revert_version)
 
-    def _revert_version(self, event: Event, kind: str, dispatcher: EventDispatcher):
+    def _revert_version(self, event: Event, kind: str, dispatcher: EventDispatcher) -> None:
         del event, kind, dispatcher
 
         for group_name, packages in self._state.items():
@@ -61,13 +61,14 @@ class Plugin(ApplicationPlugin):
                 if dependency.name in packages:
                     dependency.constraint = packages[dependency.name]
 
-    def _zero(self, version_pice: int | None):
+    def _zero(self, version_pice: int | None) -> int | None:
         return None if version_pice is None else 0
 
-    def _min(self, constraint, release_new):
+    def _min(self, constraint: VersionRangeConstraint, release_new: Release) -> Version | None:
+        assert constraint.min is not None
         return Version.parse(release_new.text) if (release_new < constraint.min.release) else constraint.min
 
-    def _apply_version(self, event: Event, kind: str, dispatcher: EventDispatcher):
+    def _apply_version(self, event: Event, kind: str, dispatcher: EventDispatcher) -> None:
         del kind, dispatcher
         assert isinstance(event, ConsoleCommandEvent)
 
@@ -159,7 +160,7 @@ class Plugin(ApplicationPlugin):
                     print(f"{package_name}: {require.constraint} => {constraint}.")
                 require.constraint = constraint
 
-    def _apply_version_on(self, dependencies):
+    def _apply_version_on(self, dependencies: dict[str, Any]) -> None:
         versions_type = self._plugin_config.get("default", "full")
 
         for package_name, full_version in dependencies.items():
