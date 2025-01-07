@@ -1,7 +1,7 @@
 """Poetry plugin use to tweak the dependencies of the project."""
 
 import re
-from typing import Any, Optional
+from typing import Any
 
 import cleo.commands.command
 import cleo.events.console_events
