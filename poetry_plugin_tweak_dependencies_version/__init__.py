@@ -61,7 +61,7 @@ class Plugin(ApplicationPlugin):
                 if dependency.name in packages:
                     dependency.constraint = packages[dependency.name]
 
-    def _zero(self, version_pice: Optional[int]):
+    def _zero(self, version_pice: int | None):
         return None if version_pice is None else 0
 
     def _min(self, constraint, release_new):
