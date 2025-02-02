@@ -28,13 +28,13 @@ python = ">=3.9.2,<3.14"
 poetry = "==1.8.*"
 idna = "3.10"
 cryptography = "44.0.0"
-urllib3 = "2.2.3"
-certifi = "2024.8.30"
+urllib3 = "2.3.0"
+certifi = "2024.12.14"
 
 [tool.poetry.group.dev.dependencies]
-prospector = { version = "1.13.3", extras = ["with_bandit", "with_mypy", "with_pyroma", "with_ruff"] }
-prospector-profile-duplicated = "1.8.1"
-prospector-profile-utils = "1.14.1"
+prospector = { version = "1.14.0", extras = ["with_bandit", "with_mypy", "with_pyroma", "with_ruff"] }
+prospector-profile-duplicated = "1.10.4"
+prospector-profile-utils = "1.17.0"
 
 [tool.poetry.plugins."poetry.application.plugin"]
 tweak_dependencies_version = "poetry_plugin_tweak_dependencies_version:Plugin"
