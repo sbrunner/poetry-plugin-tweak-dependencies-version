@@ -87,7 +87,6 @@ class Plugin(ApplicationPlugin):
                 constraint = require.constraint
                 self._state.setdefault(group_name, {})[package_name] = constraint
 
-                # print(constraint.min.minor,constraint.max.minor)
                 if package_version_type == "present":
                     constraint = VersionRange()
                 elif package_version_type == "major":
