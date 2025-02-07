@@ -36,7 +36,8 @@ class Plugin(ApplicationPlugin):
         self._application = application
         self._pyproject = self._application.poetry.pyproject.data
         self._plugin_config = self._pyproject.get("tool", {}).get(
-            "poetry-plugin-tweak-dependencies-version", {}
+            "poetry-plugin-tweak-dependencies-version",
+            {},
         )
         for key, value in list(self._plugin_config.items()):
             if "_" in key:
@@ -86,7 +87,6 @@ class Plugin(ApplicationPlugin):
                 constraint = require.constraint
                 self._state.setdefault(group_name, {})[package_name] = constraint
 
-                # print(constraint.min.minor,constraint.max.minor)
                 if package_version_type == "present":
                     constraint = VersionRange()
                 elif package_version_type == "major":
@@ -153,7 +153,7 @@ class Plugin(ApplicationPlugin):
                     if not constraint.allows_all(old_constraint):
                         print(
                             f"WARNING: the original constraint '{old_constraint}' don't looks to be "
-                            f"compatible with the new one '{package_version_type}'."
+                            f"compatible with the new one '{package_version_type}'.",
                         )
 
                 if str(require.constraint) != str(constraint):
@@ -165,8 +165,7 @@ class Plugin(ApplicationPlugin):
 
         for package_name, full_version in dependencies.items():
             version = full_version["version"] if isinstance(full_version, dict) else full_version
-            if version.startswith("=="):
-                version = version[2:]
+            version = version.removeprefix("==")
 
             version_match = _VERSION_RE.match(version)
             if version_match is None:
