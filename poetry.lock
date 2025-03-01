@@ -1056,13 +1056,13 @@ files = [
 
 [[package]]
 name = "prospector"
-version = "1.14.1"
+version = "1.15.2"
 description = "Prospector is a tool to analyse Python code by aggregating the result of other tools."
 optional = false
 python-versions = "<4.0,>=3.9"
 files = [
-    {file = "prospector-1.14.1-py3-none-any.whl", hash = "sha256:3cdb71c20c26a72a370e94de7f47f8492299d8843af3be5c5d7d5118d591e910"},
-    {file = "prospector-1.14.1.tar.gz", hash = "sha256:4f969c7d3df9f81c3c626e92ea25c243627da2d707285805ad36ed7c378ee3ec"},
+    {file = "prospector-1.15.2-py3-none-any.whl", hash = "sha256:06f8986e96a2d7f82904821710745418496e5c163241a922cac8dc3e3bc7dd43"},
+    {file = "prospector-1.15.2.tar.gz", hash = "sha256:e080667fc33baa93f5b2ab3d88650bbef201a9edcb1982a3ccf6b0696e1f4ab0"},
 ]
 
 [package.dependencies]
@@ -1109,17 +1109,17 @@ files = [
 
 [[package]]
 name = "prospector-profile-utils"
-version = "1.20.2"
+version = "1.21.7"
 description = "Some utility Prospector profiles."
 optional = false
 python-versions = "*"
 files = [
-    {file = "prospector_profile_utils-1.20.2-py2.py3-none-any.whl", hash = "sha256:f550758a67c401df6a293a3461120fb22d7f3da0e8f93f3b04dbc2c67cbdd05e"},
-    {file = "prospector_profile_utils-1.20.2.tar.gz", hash = "sha256:ac26adee6db3abfe931ea236b4202dd98f695405f25bd795121b2591262df66b"},
+    {file = "prospector_profile_utils-1.21.7-py2.py3-none-any.whl", hash = "sha256:afcfa01a2bfd0561cf0ff2c89c734455adedab6621ffb25b8fbfe188daa8b1d1"},
+    {file = "prospector_profile_utils-1.21.7.tar.gz", hash = "sha256:0c09fb57893abe4eb4836ac6c7619951fcfcfb354d45c4f40ff51a99bb78909f"},
 ]
 
 [package.dependencies]
-prospector = ">=1.13.0"
+prospector = {version = ">=1.13.0", extras = ["with-mypy", "with-ruff"]}
 
 [[package]]
 name = "pycodestyle"
@@ -1916,4 +1916,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9.2,<3.14"
-content-hash = "5983a0478bccd3209eb90ed7e40162aa77ed11900f05d0250cf7f81dc81088be"
+content-hash = "90889319deb02cd9f12a1c29227e483c5a00079636674c535cba2771d1d0ea7b"
