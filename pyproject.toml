@@ -32,7 +32,7 @@ packages = [{ include = "poetry_plugin_tweak_dependencies_version" }, { include 
 
 [tool.poetry.dependencies]
 python = ">=3.9.2,<3.14"
-poetry = "==2.1.*"
+poetry = "==2.0.1"
 idna = "3.10"
 cryptography = "44.0.2"
 urllib3 = "2.3.0"
@@ -66,5 +66,5 @@ format-jinja = """
 default = "present"
 
 [build-system]
-requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning", "poetry-plugin-drop-python-upper-constraint", "poetry-plugin-tweak-dependencies-version"]
+requires = ["poetry-core==2.1.1", "poetry-dynamic-versioning==1.7.1", "poetry-plugin-drop-python-upper-constraint==0.1.0", "poetry-plugin-tweak-dependencies-version===1.5.2"]
 build-backend = "poetry.core.masonry.api"
