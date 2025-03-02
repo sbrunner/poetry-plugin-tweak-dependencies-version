@@ -32,7 +32,7 @@ packages = [{ include = "poetry_plugin_tweak_dependencies_version" }, { include 
 
 [tool.poetry.dependencies]
 python = ">=3.9.2,<3.14"
-poetry = "==2.0.*"
+poetry = "==2.1.*"
 idna = "3.10"
 cryptography = "44.0.2"
 urllib3 = "2.3.0"
