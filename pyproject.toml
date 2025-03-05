@@ -40,8 +40,8 @@ certifi = "2025.1.31"
 
 [tool.poetry.group.dev.dependencies]
 prospector = { version = "1.15.2", extras = ["with_bandit", "with_mypy", "with_pyroma", "with_ruff"] }
-prospector-profile-duplicated = "1.10.4"
-prospector-profile-utils = "1.21.9"
+prospector-profile-duplicated = "1.10.5"
+prospector-profile-utils = "1.22.3"
 
 [tool.poetry.plugins."poetry.application.plugin"]
 tweak_dependencies_version = "poetry_plugin_tweak_dependencies_version:Plugin"
