@@ -57,6 +57,7 @@ jobs:
 
       - run: pip install --use-pep517 .
 
+      - run: (cd example/; pip freeze)
       - run: (cd example/; poetry build -v)
       - run: unzip example/dist/example-0.1.0-py3-none-any.whl
       - run: cat example-0.1.0.dist-info/METADATA
