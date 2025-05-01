@@ -9,7 +9,7 @@ convention = "numpy"
 version = "0.1.0"
 
 [tool.poetry.dependencies]
-python = ">=3.9.2,<3.14"
+python = ">=3.10,<3.14"
 poetry = "==2.1.2"
 idna = "3.10"
 cryptography = "44.0.2"
@@ -66,6 +66,7 @@ classifiers = [
 ]
 authors = [{name = "Stéphane Brunner",email = "stephane.brunner@camptocamp.com"}]
 packages = [{ include = "poetry_plugin_tweak_dependencies_version" }, { include = "poetry_plugin_tweak_dependencies_version/py.typed" }]
+requires-python = ">=3.10"
 
 [project.urls]
 repository = "https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version"
