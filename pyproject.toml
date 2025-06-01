@@ -10,7 +10,7 @@ version = "0.1.0"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.14"
-poetry = "==2.1.2"
+poetry = "==2.1.3"
 idna = "3.10"
 cryptography = "45.0.3"
 urllib3 = "2.4.0"
@@ -67,6 +67,7 @@ classifiers = [
 authors = [{name = "Stéphane Brunner",email = "stephane.brunner@camptocamp.com"}]
 packages = [{ include = "poetry_plugin_tweak_dependencies_version" }, { include = "poetry_plugin_tweak_dependencies_version/py.typed" }]
 requires-python = ">=3.10"
+dependencies = ["poetry", "idna", "cryptography", "urllib3", "certifi"]
 
 [project.urls]
 repository = "https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version"
