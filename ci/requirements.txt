@@ -4,4 +4,4 @@ pip==25.1.1
 pre-commit==4.2.0
 setuptools>=65.5.1 # not directly required, pinned by Snyk to avoid a vulnerability
 zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability
-tag-publish==1.0.1
+tag-publish==1.1.1
