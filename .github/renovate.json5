@@ -25,4 +25,5 @@
     },
   ],
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  baseBranchPatterns: ['master', '1.5'],
 }
