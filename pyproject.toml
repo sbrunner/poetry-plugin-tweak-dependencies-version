@@ -22,7 +22,7 @@ version = "0.1.0"
 [tool.poetry.dependencies]
 python = ">=3.10,<3.14"
 poetry = "==2.0.1"
-idna = "3.15"
+idna = "3.17"
 cryptography = "48.0.0"
 urllib3 = "2.7.0"
 certifi = "2026.5.20"
@@ -79,12 +79,12 @@ classifiers = [
 authors = [{name = "Stéphane Brunner",email = "stephane.brunner@camptocamp.com"}]
 packages = [{ include = "poetry_plugin_tweak_dependencies_version" }, { include = "poetry_plugin_tweak_dependencies_version/py.typed" }]
 requires-python = ">=3.10"
-dependencies = ["poetry<2.1.0", "idna", "cryptography", "urllib3", "certifi", "requests==2.33.1", "filelock==3.29.0", "virtualenv==20.39.1"]
+dependencies = ["poetry<2.1.0", "idna", "cryptography", "urllib3", "certifi", "requests==2.34.2", "filelock==3.29.0", "virtualenv==20.39.1"]
 
 [project.urls]
 repository = "https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version"
 "Bug Tracker" = "https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/issues"
 
 [build-system]
-requires = ["poetry-core==2.3.2", "poetry-dynamic-versioning==1.10.0", "poetry-plugin-drop-python-upper-constraint==1.0.1", "poetry-plugin-tweak-dependencies-version==1.5.6"]
+requires = ["poetry-core==2.4.1", "poetry-dynamic-versioning==1.10.0", "poetry-plugin-drop-python-upper-constraint==1.0.1", "poetry-plugin-tweak-dependencies-version==1.5.6"]
 build-backend = "poetry.core.masonry.api"
