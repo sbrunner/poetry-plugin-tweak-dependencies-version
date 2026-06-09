@@ -1,3 +1,8 @@
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.black]
 line-length = 110
 target-version = ["py39"]
@@ -68,7 +73,3 @@ post_f = "full"
 set = "4.5.6"
 present = "present"
 t2 = "full"
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
