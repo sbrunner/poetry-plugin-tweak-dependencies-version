@@ -14,4 +14,8 @@ ignore:
     - '*':
         reason: not compatible with used Poetry version
         created: 2026-06-01T08:45:00.000Z
+  SNYK-PYTHON-DULWICH-18016337:
+    - '*':
+        reason: not compatible with used Poetry version
+        created: 2026-07-21T10:29:35.000Z
 patch: {}
