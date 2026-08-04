@@ -9,4 +9,4 @@ requests>=2.32.4 # not directly required, pinned by Snyk to avoid a vulnerabilit
 black>=26.3.1 # not directly required, pinned by Snyk to avoid a vulnerability
 urllib3>=2.7.0 # not directly required, pinned by Snyk to avoid a vulnerability
 bleach>=6.4.0 # not directly required, pinned by Snyk to avoid a vulnerability
-cryptography>=48.0.1 # not directly required, pinned by Snyk to avoid a vulnerability
+cryptography>=50.0.0 # not directly required, pinned by Snyk to avoid a vulnerability
