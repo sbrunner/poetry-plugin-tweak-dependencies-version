@@ -65,6 +65,8 @@ certifi = "2026.7.22"
 prospector = { version = "1.17.3", extras = ["with_bandit", "with_mypy", "with_pyroma", "with_ruff"] }
 prospector-profile-duplicated = "1.11.0"
 prospector-profile-utils = "1.26.5"
+ruff = "0.14.14"
+pylint = "3.3.9"
 
 [tool.poetry.plugins."poetry.application.plugin"]
 tweak_dependencies_version = "poetry_plugin_tweak_dependencies_version:Plugin"
