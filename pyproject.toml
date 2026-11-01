@@ -86,5 +86,5 @@ repository = "https://github.com/sbrunner/poetry-plugin-tweak-dependencies-versi
 "Bug Tracker" = "https://github.com/sbrunner/poetry-plugin-tweak-dependencies-version/issues"
 
 [build-system]
-requires = ["poetry-dynamic-versioning[plugin]==1.10.0", "poetry-plugin-drop-python-upper-constraint==1.0.1", "poetry-plugin-tweak-dependencies-version==1.5.7"]
+requires = ["poetry-dynamic-versioning[plugin]==1.10.1", "poetry-plugin-drop-python-upper-constraint==1.0.1", "poetry-plugin-tweak-dependencies-version==1.5.7"]
 build-backend = "poetry.core.masonry.api"
